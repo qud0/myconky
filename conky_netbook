@@ -1,0 +1,119 @@
+conky.config = {
+--===Settings=================================================
+	use_xft = true,
+	font = 'Terminus:size=9',
+	xftalpha = 0.2,
+	text_buffer_size = 256,
+--############################################################
+	background = true,
+	own_window = true,
+--own_window_transparent yes
+--own_window_type override
+	own_window_type = 'normal',
+--own_window_type desktop
+	own_window_colour = '000000',
+	own_window_transparent = true,
+	own_window_argb_visual = true,
+	own_window_argb_value = 0,
+	own_window_hints = 'undecorated,below,sticky,skip_taskbar,skip_pager',
+	double_buffer = true,
+	total_run_times = 0,
+	update_interval = 0.7,
+-- Minimum size of text area
+	minimum_width = 200, minimum_height = 0,
+	maximum_width = 270,
+	draw_shades = false,
+	draw_outline = false,
+	draw_borders = false,
+	draw_graph_borders = true,
+	stippled_borders = 0,
+	border_margin = '5',
+	border_width = 3,
+--====================================================
+--Default colors and also border colors
+	default_color = '#00c5ff',--22ff00 Смена цвета Голубой / Зелёный
+--default_shade_color black
+--default_outline_color grey
+	own_window_colour = '000000',
+--====================================================
+--Text alignment, other possible values are commented
+--alignment top_left
+	alignment = 'top_right',
+--alignment bottom_left
+--alignment bottom_right
+	gap_x = 10,
+	gap_y = 0,
+	uppercase = false,
+	cpu_avg_samples = 2,
+	net_avg_samples = 2,
+	override_utf8_locale = true,
+	use_spacer = 'none',
+--Text
+};
+conky.text = [[
+
+
+${alignr}${color white}${kernel}
+${font Gamer:size=12}${color #1dd2af}CPU :
+${font Terminus:bold:size=9}
+${color aaff00}CPU: ${alignr} ${color #aaff00}${cpu}% ${color white}| ${color #ffff33}$running_threads ${color white}|  ${color #aaff00}$freq_g${color white} : GHz | ${alignr}${color #FFFF00}${exec sensors|grep 'Core 0'|awk '{print $3}'}
+${color white}${cpugraph cpu0 70,270 black white}
+${color white}${cpubar cpu0 12, 270}
+#------------------------- wifi ------------------------------------------------
+${voffset +10}${font Gamer:size=12}${color #1dd2af}WIFI :
+${font Terminus:size=11}
+${color 90A4AE}ssid:${alignr 10}${color white}${wireless_essid wlp3s0}
+${color 90A4AE}bsid: ${alignr 10}${color white}${wireless_ap wlp3s0}
+${color 90A4AE}mode:${alignr 10}${color white} ${wireless_mode wlp3s0}
+${color 90A4AE}speed:${alignr 10}${color white} ${wireless_bitrate wlp3s0}
+${color 90A4AE}lan: ${alignr 10}${color white}${addr wlp3s0}
+${color 90A4AE}wan:${alignr 10}${color white}${exec curl ipinfo.io/ip}
+${voffset +5}${color 76FF03}${alignr 10}${wireless_link_bar 3,230 wlp2s0} ${color white}[${color 76FF03}${wireless_link_qual_perc wlp3s0}${color white}]
+
+${font Terminus:size=9}${color1}Up   : ${color3}${upspeed  wlp3s0}${alignr}${color1}Total : ${color2}${totalup  wlp3s0}
+${color1}${upspeedgraph wlp3s0 16,0  black white }
+${color1}Down : ${color3}${downspeed  wlp3s0}${alignr}${color1}Total : ${color2}${totaldown  wlp3s0}
+${color1}${downspeedgraph wlp3s0 16,0  white black }
+#------------------------- wifi end --------------------------------------------
+${voffset +5}${font Gamer:size=12}${color #1dd2af}RAM :
+${voffset +10}${color white}${membar 6,270}
+${voffset +5}${font Terminus:size=9}${color 90A4AE}u: ${color efaf2a}${mem}${alignr}${color 90A4AE}f: ${color efaf2a}${memfree}
+${voffset +10}${font Gamer:size=12}${color 1dd2af}TOP CPU :${font Terminus:size=9}
+${color white}${hr}
+${voffset +10}${color d9241b}${top name 1} $alignr ${color white}${top pid 1}${color 546E7A} | ${color efaf2a}${top cpu 1}
+${color d96c27}${top name 2} $alignr ${color white}${top pid 2}${color 546E7A} | ${color efaf2a}${top cpu 2}
+${color efaf2a}${top name 3} $alignr ${color white}${top pid 3}${color 546E7A} | ${color efaf2a}${top cpu 3}
+${color 00923e}${top name 4} $alignr ${color white}${top pid 4}${color 546E7A} | ${color 00923e}${top cpu 4}
+${color 007cc0}${top name 5} $alignr ${color white}${top pid 5}${color 546E7A} | ${color 007cc0}${top cpu 5}
+${color 007cc0}${top name 6} $alignr ${color white}${top pid 6}${color 546E7A} | ${color 007cc0}${top cpu 6}
+${color 007cc0}${top name 7} $alignr ${color white}${top pid 7}${color 546E7A} | ${color 007cc0}${top cpu 7}
+${color 007cc0}${top name 8} $alignr ${color white}${top pid 8}${color 546E7A} | ${color 007cc0}${top cpu 8}
+${color 007cc0}${top name 9} $alignr ${color white}${top pid 9}${color 546E7A} | ${color 007cc0}${top cpu 9}
+${voffset +10}${font Gamer:size=12}${color 1dd2af}TOP MEM :${font Terminus:size=9}
+${color white}${hr 1}
+${voffset +10}${color d9241b}${top_mem name 1} $alignr $color3${top pid 1}${color 546E7A} | ${color d9241b}${top_mem mem_res 1}
+${color d96c27}${top_mem name 2} $alignr $color3${top pid 2}${color 546E7A} | ${color d96c27}${top_mem mem_res 2}
+${color efaf2a}${top_mem name 3} $alignr $color3${top pid 3}${color 546E7A} | ${color efaf2a}${top_mem mem_res 3}
+${color 00923e}${top_mem name 4} $alignr $color3${top pid 4}${color 546E7A} | ${color 00923e}${top_mem mem_res 4}
+${color 007cc0}${top_mem name 5} $alignr $color3${top pid 5}${color 546E7A} | ${color 007cc0}${top_mem mem_res 5}
+${color 007cc0}${top_mem name 6} $alignr $color3${top pid 6}${color 546E7A} | ${color 007cc0}${top_mem mem_res 6}
+${color 007cc0}${top_mem name 7} $alignr $color3${top pid 7}${color 546E7A} | ${color 007cc0}${top_mem mem_res 7}
+${color 007cc0}${top_mem name 8} $alignr $color3${top pid 8}${color 546E7A} | ${color 007cc0}${top_mem mem_res 8}
+${color 007cc0}${top_mem name 9} $alignr $color3${top pid 9}${color 546E7A} | ${color 007cc0}${top_mem mem_res 9}
+${voffset +10}${font Gamer:size=12}${color #1dd2af}SSD :
+${voffset +10}${color white}${diskiograph 14,270 /dev/sda black white}
+${voffset +10}${font Terminus:size=9}${color white} / ${alignr}${color EEEEEE}${fs_used /} | ${fs_size /} | ${color efaf2a}${fs_free_perc /}%
+${voffset +5}${color 546E7A}${fs_bar 8,270}
+${voffset +10}${color white} /home ${alignr}${color EEEEEE}${fs_used /home} | ${fs_size /home} | ${color efaf2a}${fs_free_perc /home}%
+${voffset +5}${color 546E7A}${fs_bar 8,270 /home}
+${voffset +10}${color white} /sd ${alignr}${color EEEEEE}${fs_used /mnt/sdb1/} | ${fs_size /mnt/sdb1/} | ${color efaf2a}${fs_free_perc /mnt/sdb1/}%
+${voffset +5}${color 546E7A}${fs_bar 8,270 /mnt/sdb1/}
+#=-=-=-=-=-=-= battery =-=-=-=-=-=-=-=-=-
+${voffset +5}${font Gamer:size=12}${color #1dd2af}BAT :
+${font Terminus:size=9}${voffset +10}${color #00FF00}${battery_bar 6}
+${voffset +5}${color white}${battery_short}${alignr}[${color efaf2a}${battery_time}${color white}]
+
+
+
+
+]];
